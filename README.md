@@ -48,10 +48,10 @@ pip install -r requirements.txt
 <p>5. Open config.py and fill it</p>
 
 ```python
-API_ID = 123456  # api id
-API_HASH = "ABC-DEF1234ghIkl-zyx57W2v1u123ew11"  # api hash
+API_ID = 23497750  # api id
+API_HASH = "9e7aa47ea2368aa0368f3d07bec7abce"  # api hash
 
-BOT_TOKEN = "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11"  # bot token
+BOT_TOKEN = "7881867934:AAE9yoLbaNCdEuVYiy6pAENFhjR8Z2Asb6M"  # bot token
 
 
 ## REDIS
@@ -59,12 +59,12 @@ HOST = "localhost"  # redis host uri
 PORT = 6379  # redis port
 PASSWORD = ""  # redis password
 
-PRIVATE_CHAT_ID = -1001234567890  # CHAT WHERE YOU WANT TO STORE VIDEOS
+PRIVATE_CHAT_ID = -4659157761  # CHAT WHERE YOU WANT TO STORE VIDEOS
 COOKIE = ""  # COOKIE FOR AUTHENTICATION (get from chrome dev tools) ex: "PANWEB=1; csrfToken=;
-ADMINS = [1317173146]
+ADMINS = [7717814349]
 
 
-BOT_USERNAME = "teraboxdown_bot"
+BOT_USERNAME = "Terabox_dowunlesga_bot"
 
 # Force user to join this channel. (make sure you have promoted the bot on this chat.)
 FORCE_LINK = "@RoldexVerse"
