@@ -1,21 +1,21 @@
-API_ID = 123456  # api id
-API_HASH = "ABC-DEF1234ghIkl-zyx57W2v1u123ew11"  # api hash
+API_ID = 27710337  # api id
+API_HASH = "354e1dd8e1e3041ee2145196da8d6aac"  # api hash
 
-BOT_TOKEN = "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11"  # bot token
+BOT_TOKEN = "8003521396:AAHdcvvBDdKBWB0B-3HTbhEpC41gQYzSoa8"  # bot token
 
 
 # REDIS
-HOST = "localhost"  # redis host uri
-PORT = 6379  # redis port
-PASSWORD = ""  # redis password
+HOST = "redis-12472.c93.us-east-1-3.ec2.redns.redis-cloud.com:12472"  # redis host uri
+PORT = 12472  # redis port
+PASSWORD = "IJLMnosbeHfR681bigkNSEJTnJ1IJsrf"  # redis password
 
-PRIVATE_CHAT_ID = -1001234567890  # CHAT WHERE YOU WANT TO STORE VIDEOS
+PRIVATE_CHAT_ID = -1002685693842  # CHAT WHERE YOU WANT TO STORE VIDEOS
 # COOKIE FOR AUTHENTICATION (get from chrome dev tools) ex: "PANWEB=1; csrfToken=;
 COOKIE = ""
-ADMINS = [1317173146]
+ADMINS = [6018060368]
 
 
-BOT_USERNAME = "teraboxdown_bot"
+BOT_USERNAME = "PlaymateX_bot"
 
 # Force user to join this channel. (make sure you have promoted the bot on this chat.)
 FORCE_LINK = "@RoldexVerse"
