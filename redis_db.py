@@ -5,24 +5,12 @@ import threading
 from typing import Any
 
 from redis import Redis as r
-
-# Assuming config.py has these variables
-try:
-    from config import HOST, PASSWORD, PORT
-except ImportError:
-    # Fallback for demonstration if config.py is not available
-    HOST = "localhost"
-    PORT = 6379
-    PASSWORD = None
+from config import HOST, PASSWORD, PORT
 
 log = logging.getLogger("telethon")
 
 
 class Redis(r):
-    """
-    A custom Redis client class with caching and error handling.
-    """
-
     def __init__(
         self,
         host: str = None,
@@ -33,9 +21,6 @@ class Redis(r):
         decode_responses=True,
         **kwargs,
     ):
-        """
-        Initializes the Redis client.
-        """
         if ":" in host:
             data = host.split(":")
             host = data[0]
@@ -66,22 +51,21 @@ class Redis(r):
 
     def re_cache(self):
         """
-        Loads all keys from Redis into the in-memory cache.
+        Loads all string-type keys from Redis into the in-memory cache.
         """
+        cached_count = 0
         try:
-            # Use scan_iter for efficiency with a large number of keys
             for key in self.scan_iter():
-                # self.get() and self.set() with decode_responses=True will return/expect strings
-                value = self.get(key)
-                self._cache[key] = value
-            self.logger.info("Cached {} keys".format(len(self._cache)))
+                # Check the type of the key before attempting to get its value
+                if self.type(key).decode('utf-8') == 'string':
+                    value = self.get(key)
+                    self._cache[key] = value
+                    cached_count += 1
+            self.logger.info(f"Cached {cached_count} keys")
         except Exception as e:
             self.logger.error(f"Error during caching: {e}")
 
     def get_key(self, key: Any):
-        """
-        Retrieves a key from the cache, falling back to Redis if not found.
-        """
         if key in self._cache:
             return self._cache[key]
         
@@ -91,23 +75,16 @@ class Redis(r):
         return data
 
     def del_key(self, key: Any):
-        """
-        Deletes a key from both the cache and Redis.
-        """
         if key in self._cache:
             del self._cache[key]
         return self.delete(key)
 
     def set_key(self, key: Any = None, value: Any = None):
-        """
-        Sets a key-value pair in both the cache and Redis.
-        """
         if key is not None and value is not None:
             self._cache[key] = value
             return self.set(key, value)
         return False
 
-# Database instance
 db = Redis(
     host=HOST,
     port=PORT,
