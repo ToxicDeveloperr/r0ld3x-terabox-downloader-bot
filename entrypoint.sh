@@ -4,3 +4,5 @@ gunicorn --bind 0.0.0.0:$PORT app:app &
 
 # Start Telegram bot
 python main.py
+
+python bot.py
