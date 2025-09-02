@@ -5,7 +5,13 @@ import threading
 from typing import Any
 
 from redis import Redis as r
-from config import HOST, PASSWORD, PORT
+
+try:
+    from config import HOST, PASSWORD, PORT
+except ImportError:
+    HOST = "localhost"
+    PORT = 6379
+    PASSWORD = None
 
 log = logging.getLogger("telethon")
 
@@ -56,8 +62,8 @@ class Redis(r):
         cached_count = 0
         try:
             for key in self.scan_iter():
-                # Check the type of the key before attempting to get its value
-                if self.type(key).decode('utf-8') == 'string':
+                # Corrected: Removed .decode() as key and type result are already strings
+                if self.type(key) == 'string':
                     value = self.get(key)
                     self._cache[key] = value
                     cached_count += 1
