@@ -4,10 +4,17 @@ FROM python:3.12-slim
 # Set working directory
 WORKDIR /app
 
+# ---- MODIFICATION START ----
+# Install build-essential which contains gcc and other necessary tools
+# This needs to be done BEFORE pip install
+RUN apt-get update && apt-get install -y build-essential && rm -rf /var/lib/apt/lists/*
+# ---- MODIFICATION END ----
+
 # Copy requirements
 COPY requirements.txt .
 
 # Install dependencies
+# Now pip will find gcc and be able to build tgcrypto
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy all code files
